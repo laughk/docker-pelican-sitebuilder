@@ -6,10 +6,10 @@ PROGRAMNAME=$(basename $0)
 function show_help() {
 
   echo "Usage:"
-  echo "  ${PROGRAMNAME} [-c|--config-stage <local|publish>] [-t|--theme-name theme_name] "
+  echo "  ${PROGRAMNAME} [-c|--config-type <local|publish>] [-t|--theme-name theme_name] "
   echo
   echo "Options:"
-  echo "  -c, --config-stage       choice of pelicanconf type."
+  echo "  -c, --config-type       choice of pelicanconf type."
   echo "                           local: use pelicanconf.py, publish: publishconf.py"
   echo "                           [default: local]"
   echo "  -t, --theme-name         theme name under /theme in docker container."
@@ -29,7 +29,7 @@ do
       show_help
       exit 1
       ;;
-    '-c'|'--config-stage')
+    '-c'|'--config-type')
       if [[ -z $2 ]] || [[ $2 =~ ^-+ ]]; then
         echo "${PROGRAMNAME}: option requires an argument "local" or "publish" -- $1" 1>&2
         exit 1
