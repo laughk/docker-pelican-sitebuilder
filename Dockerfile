@@ -5,6 +5,7 @@ ENV ALPINE_PACKAGES="\
       rsync \
       openssh \
       git \
+      bash \
     "
 
 ENV PY_PACKAGES="\
@@ -19,7 +20,7 @@ RUN echo && \
       mkdir -pv /sitesrc /theme && \
       git clone --recursive https://github.com/getpelican/pelican-plugins /pelican-plugins
 
-COPY buildconfig.py /
+COPY pelican-site-build.sh /usr/local/bin/
 VOLUME ["/sitesrc", "/theme"]
 WORKDIR /sitesrc
-CMD ["pelican" , "/sitesrc/content", "--settings", "/buildconfig.py"]
+ENTRYPOINT ["/usr/local/bin/pelican-site-build.sh"]
