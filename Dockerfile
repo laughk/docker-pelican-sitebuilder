@@ -23,4 +23,4 @@ RUN echo && \
 COPY pelican-site-build.sh /usr/local/bin/
 VOLUME ["/sitesrc", "/theme"]
 WORKDIR /sitesrc
-ENTRYPOINT ["/usr/local/bin/pelican-site-build.sh"]
+#ENTRYPOINT ["/usr/local/bin/pelican-site-build.sh"]
