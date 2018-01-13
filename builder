@@ -12,7 +12,7 @@ PROGRAMNAME=$(basename $0)
 function show_help() {
 
   echo "Usage:"
-  echo "  ${PROGRAMNAME} [-c|--config-type <local|publish>] [-t|--official-theme theme_name] [-T|--my-theme theme_name]"
+  echo "  ${PROGRAMNAME} [-c|--config-type <local|publish>] [-t|--official-theme theme_name] [-T|--my-theme]"
   echo
   echo "Options:"
   echo "  -c, --config-type        choice of pelicanconf type."
@@ -49,15 +49,12 @@ do
       shift 2
       ;;
     '-T'|'--my-theme')
-      if [[ -z $2 ]] || [[ $2 =~ ^-+ ]]; then
-        echo "${PROGRAMNAME}: option requires an argument for theme name -- $1" 1>&2
-        exit 1
-      elif [[ ! -z ${OFFICIAL_THEME} ]]; then
+      if [[ ! -z ${OFFICIAL_THEME} ]]; then
         echo "${PROGRAMNAME}: option \"-T/--my-theme\" and \"-t/--oficial-theme\" are not able to use at the same time."
         exit 1
       fi
-      USE_THEME_PATH="/theme/$2"
-      shift 2
+      USE_THEME_PATH="/my-theme"
+      shift 1
       ;;
     '-t'|'--official-theme')
       if [[ -z $2 ]] || [[ $2 =~ ^-+ ]]; then
