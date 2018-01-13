@@ -23,5 +23,5 @@ RUN echo && \
 
 COPY  builder /usr/local/bin/
 VOLUME ["/project-root", "/theme"]
-WORKDIR /sitesrc
+WORKDIR /project-root
 CMD ["builder"]
