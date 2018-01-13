@@ -1,6 +1,6 @@
 # docker-sitebuild-by-pelican
 
-Docker container include [pelican](https://github.com/getpelican/pelican), [pelican-plugins](https://github.com/getpelican/pelican-plugins)
+Docker container include [pelican](https://github.com/getpelican/pelican), [pelican-plugins](https://github.com/getpelican/pelican-plugins), [getpelican/pelican-themes](https://github.com/getpelican/pelican-themes)
 
 ## use case
 
@@ -11,24 +11,60 @@ put `docker-compose.yml` like below to your pelican site project root directory.
 ```yml
 version: '3'
 services:
-  pelican-sitebuild:
-    image: laughk/sitebuild-by-pelican
+  pelican-sitebuilder:
+    image: laughk/pelican-sitebuilder
     volumes:
-      - .:/sitesrc
-      - /path/to/pelican-theme-which-you-want:/theme
+      - .:/project-root
 ```
 
 and execute below command.
 
-
 ```
-docker-compose run pelican-sitebuild
+docker-compose run pelican-sitebuilder
 ```
 
-then, static site contents will be generated to `output` directory.
+then, static site contents will be generated to `output` directory with using `pelicanconf.py`.
 
-If you want use `publishconf.py`, execute docker-compose with `-c` or `--config-type` option like below.
+#### use with publishconf.py
 
+If you want use `publishconf.py`, update docker-compose.yml to like below.
+
+```yml
+version: '3'
+services:
+  pelican-sitebuilder:
+    image: laughk/pelican-sitebuilder
+    volumes:
+      - .:/project-root
+    command: builder -c publish
 ```
-docker-compose run pelican-sitebuild -c publish
+
+#### use theme in [getpelican/pelican-themes](https://github.com/getpelican/pelican-themes)
+
+update docker-compose.yml to like below.
+
+```yml
+version: '3'
+services:
+  pelican-sitebuilder:
+    image: laughk/pelican-sitebuilder
+    volumes:
+      - .:/project-root
+    command: builder -t <theme_name_which_you_want>
 ```
+
+#### use theme you want use
+
+If you want use `publishconf.py`, update docker-compose.yml to like below.
+
+```yml
+version: '3'
+services:
+  pelican-sitebuilder:
+    image: laughk/pelican-sitebuilder
+    volumes:
+      - .:/project-root
+      - /path/to/pelican-theme-which-you-want:/my-theme
+    command: builder -T
+```
+
