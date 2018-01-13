@@ -17,10 +17,11 @@ RUN echo && \
       apk add --no-cache $ALPINE_PACKAGES && \
       pip3 install -U pip && \
       pip3 install $PY_PACKAGES && \
-      mkdir -pv /sitesrc /theme && \
-      git clone --recursive https://github.com/getpelican/pelican-plugins /pelican-plugins
+      mkdir -pv /project-root /my-theme && \
+      git clone --recursive https://github.com/getpelican/pelican-plugins /pelican-plugins && \
+      git clone --recursive https://github.com/getpelican/pelican-themes /pelican-themes
 
-COPY pelican-site-build.sh /usr/local/bin/
-VOLUME ["/sitesrc", "/theme"]
+COPY  builder /usr/local/bin/
+VOLUME ["/project-root", "/theme"]
 WORKDIR /sitesrc
-#ENTRYPOINT ["/usr/local/bin/pelican-site-build.sh"]
+CMD ["builder"]
