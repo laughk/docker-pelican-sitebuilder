@@ -13,8 +13,7 @@ RUN apk add --no-cache \
       && \
     pip3 install -r /requirements.txt  && \
     mkdir -pv /project-root /my-theme && \
-    git clone --recursive https://github.com/getpelican/pelican-plugins /pelican-plugins && \
-    git clone --recursive https://github.com/getpelican/pelican-themes /pelican-themes
+    git clone --recursive https://github.com/getpelican/pelican-plugins /pelican-plugins
 
 VOLUME ["/project-root", "/theme"]
 WORKDIR /project-root

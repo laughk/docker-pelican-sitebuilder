@@ -39,20 +39,6 @@ services:
     command: builder -c publish
 ```
 
-#### use theme in [getpelican/pelican-themes](https://github.com/getpelican/pelican-themes)
-
-update docker-compose.yml to like below.
-
-```yml
-version: '3'
-services:
-  pelican-sitebuilder:
-    image: laughk/pelican-sitebuilder
-    volumes:
-      - .:/project-root
-    command: builder -t <theme_name_which_you_want>
-```
-
 #### use theme you want use
 
 If you want use `publishconf.py`, update docker-compose.yml to like below.
