@@ -88,7 +88,7 @@ esac
 trap 'unlink pelican-plugins' 1 2 3 15
 
 ln -sv /pelican-plugins .
-/usr/bin/pelican \
+/usr/local/bin/pelican \
   --settings ${PELICANCONF} \
   ${PELICAN_THEME_OPTION} \
   /project-root/content
