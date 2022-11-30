@@ -1,17 +1,11 @@
-FROM alpine:latest
+FROM python:3-slim-bullseye
 
 COPY requirements.txt /
 COPY builder /usr/local/bin/
 
-RUN apk add --no-cache \
-        python3 \
-        py3-pip \
-        rsync \
-        openssh \
-        git \
-        bash \
-      && \
-    pip3 install -r /requirements.txt  && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends git && \
+    python3 -m pip install -r /requirements.txt  && \
     mkdir -pv /project-root /my-theme && \
     git clone --recursive https://github.com/getpelican/pelican-plugins /pelican-plugins
 
