@@ -2,3 +2,4 @@ pelican==4.11.0
 markdown
 beautifulsoup4
 webassets
+pytz
